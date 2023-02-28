@@ -14,15 +14,20 @@ public class Apple extends GraphicalObject {
         this.x = x;
         this.y = y;
         speed = 150;
-        radius = 30;
+        this.setNewImage("src/main/resources/graphic/apple.png");
+        this.height = getMyImage().getHeight();
+        this.width = getMyImage().getWidth();
     }
 
     @Override
     public void draw(DrawTool drawTool) {
+        /*
         drawTool.setCurrentColor(255,0,0,255);
         drawTool.drawFilledCircle(x,y,radius);
         drawTool.setCurrentColor(0,0,0,255);
         drawTool.drawCircle(x,y,radius);
+         */
+        drawTool.drawImage (getMyImage(), x, y);
     }
 
     @Override
@@ -36,7 +41,7 @@ public class Apple extends GraphicalObject {
 
     //TODO 02 Lege eine Methode jumpBack() an, die bei Aufruf das Apple-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
     public void jumpBack() {
-        this.y = -30;
+        this.y = -height;
         this.x = Math.random()* Config.WINDOW_WIDTH;
     }
 
