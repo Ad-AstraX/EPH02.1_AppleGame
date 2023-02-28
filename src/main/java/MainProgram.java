@@ -1,7 +1,7 @@
 import KAGO_framework.Config;
 import KAGO_framework.control.MainController;
 
-public class MainProgram {
+public class MainProgram  {
 
     /**
      * Die Main-Methode von Java startet das Programm. Sie ist einzigartig im ganzen Projekt.
