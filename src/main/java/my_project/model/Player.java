@@ -41,11 +41,17 @@ public class Player extends InteractiveGraphicalObject {
     @Override
     public void update(double dt) {
         //TODO 05 Überarbeiten Sie die Update-Methode derart, dass ein Player-Objekt nicht den Bildschirm verlassen kann und immer zu sehen ist.
-        if(direction == 0 && x < Config.WINDOW_WIDTH-width-14.5){
+        if(direction == 0){
             x = x + speed*dt;
+            if (x > Config.WINDOW_WIDTH-width-14.5) {
+                x = Config.WINDOW_WIDTH-width-14.5;
+            }
         }
-        if(direction == 2 && x > 0){
+        if(direction == 2){
             x = x - speed*dt;
+            if (x < 0) {
+                x = 0;
+            }
         }
     }
 

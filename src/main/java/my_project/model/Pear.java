@@ -41,7 +41,7 @@ public class Pear extends GraphicalObject {
     //TODO 04 Lege eine Methode jumpBack() an, die bei Aufruf das Pear-Objekt oben am oberen Bildschirmrand an einer zufälligen x-Position positioniert.
     public void jumpBack() {
         this.y = -height;
-        this.x = Math.random()* Config.WINDOW_WIDTH;
+        this.x = Math.random()* (Config.WINDOW_WIDTH-width);
     }
 }
 

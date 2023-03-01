@@ -70,16 +70,10 @@ public class ProgramController {
 
     //TODO 06 Fügen Sie eine Methode checkAndHandleCollision(Apple a) hinzu. Diese gibt true zurück, falls das Apple-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
     private boolean checkAndHandleCollision(Apple a) {
-        if (a.collidesWith(player01)) {
-            return true;
-        }
-        return false;
+        return a.collidesWith(player01);
     }
     //TODO 07 Fügen Sie eine Methode checkAndHandleCollision(Pear p) hinzu. Diese gibt true zurück, falls das Pear-Objekt mit dem Player-Objekt kollidiert. Nutzen Sie hierzu die collidesWith-Methode der Klasse GraphicalObject.
     private boolean checkAndHandleCollision(Pear p) {
-        if (p.collidesWith(player01)) {
-            return true;
-        }
-        return false;
+        return p.collidesWith(player01);
     }
 }
