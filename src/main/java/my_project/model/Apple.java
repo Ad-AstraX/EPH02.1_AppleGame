@@ -1,16 +1,7 @@
 package my_project.model;
 
-import KAGO_framework.control.ViewController;
-import my_project.model.*;
-import KAGO_framework.view.DrawTool;
-import my_project.Config;
-
-public class Apple extends Pear {
-    public Apple(double x, double y) {
-        super(x, y);
+public class Apple extends Fruit {
+    public Apple(double x, double y, Player player){
+        super (x, y, "src/main/resources/graphic/apple.png", player);
     }
-
-    //public Apple(double x, double y){
-        //super (x, y, "src/main/resources/graphic/apple.png");
-    //}
 }
