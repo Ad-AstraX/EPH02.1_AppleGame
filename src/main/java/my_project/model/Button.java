@@ -45,17 +45,25 @@ public class Button extends InteractiveGraphicalObject {
         }
     }
     public boolean mouseOnPic(BufferedImage bI, GraphicalObject gO, MouseEvent e) {
-        double mouseX = e.getLocationOnScreen().getX() - 468;
-        double mouseY = e.getLocationOnScreen().getY() - 120;
+        //double mouseX = e.getLocationOnScreen().getX() - 468;
+        //double mouseY = e.getLocationOnScreen().getY() - 120;
+
+        double mouseX = e.getLocationOnScreen().getX() - 460;
+        double mouseY = e.getLocationOnScreen().getY() - 56;
+        System.out.println(mouseX);
+        System.out.println(mouseY);
 
         if (mouseX >= gO.getX() && mouseX <= (int)(gO.getX() + bI.getWidth())
                 && mouseY >= gO.getY() && mouseY < (int)(gO.getY() + bI.getHeight())) {
+            try {
+                int pixel = bI.getRGB((int)mouseX, (int)mouseY);
+                System.out.println(pixel);
+                int alpha = (pixel >> 24) & 0xff;
 
-            int pixel = bI.getAlphaRaster().getSample((int)mouseX, (int)mouseY, 0);
-            int alpha = (pixel >> 24) & 0xff;
-
-            if (alpha != 0) {System.out.println(alpha); return true;}
-            return false;
+                if (alpha != 0) {System.out.println(alpha); return true; }
+                return false;
+            }
+            catch (ArrayIndexOutOfBoundsException exception) {return false;}
         }
         return false;
     }

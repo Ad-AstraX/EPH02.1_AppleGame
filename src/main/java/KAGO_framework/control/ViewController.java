@@ -119,8 +119,8 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         x = x - my_project.Config.WINDOW_WIDTH / 2;
         y = y - my_project.Config.WINDOW_HEIGHT / 2;
 
-        System.out.println(x - my_project.Config.WINDOW_WIDTH / 2);
-        System.out.println(y - my_project.Config.WINDOW_HEIGHT / 2);
+        System.out.println(x );
+        System.out.println(y);
         // Erzeuge die erste Szene
         createScene();
         // Erzeuge ein neues Fenster zum Zeichnen
