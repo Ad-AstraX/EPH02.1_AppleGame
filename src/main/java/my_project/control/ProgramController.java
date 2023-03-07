@@ -2,10 +2,7 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.Config;
-import my_project.model.Apple;
-import my_project.model.Pear;
-import my_project.model.Player;
-
+import my_project.model.*;
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
  * mit jeder Frame im laufenden Programm aufgerufen.
@@ -51,6 +48,10 @@ public class ProgramController {
         yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
         pear01 = new Pear(xPos, yPos, player01);
         viewController.draw(pear01);
+
+        Button button = new Button();
+        viewController.register (button);
+        viewController.draw(button);
     }
 
     /**
@@ -58,6 +59,5 @@ public class ProgramController {
      * @param dt Zeit seit letzter Frame
      */
     public void updateProgram(double dt){
-        //Weitere TODOs folgen und werden im Unterricht formuliert. Spätestens nach TODO 08 sollte der Aufbau des Projekts durchdacht werden.
     }
 }

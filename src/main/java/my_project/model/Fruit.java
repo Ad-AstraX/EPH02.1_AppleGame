@@ -3,7 +3,6 @@ package my_project.model;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
-import my_project.model.Player;
 
 public class Fruit extends GraphicalObject {
 
@@ -12,10 +11,8 @@ public class Fruit extends GraphicalObject {
     private Player player;
 
     public Fruit(double x, double y, String image, Player player){
-        this.x = x;
-        this.y = y;
+        super (image, x, y);
         speed = 150;
-        this.setNewImage(image);
         this.height = getMyImage().getHeight();
         this.width =  getMyImage().getWidth();
         this.player = player;

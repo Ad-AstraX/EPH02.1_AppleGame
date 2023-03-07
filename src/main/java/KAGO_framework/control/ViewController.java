@@ -118,6 +118,9 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         // Berechne die beste obere linke Ecke für das Fenster so, dass es genau mittig erscheint
         x = x - my_project.Config.WINDOW_WIDTH / 2;
         y = y - my_project.Config.WINDOW_HEIGHT / 2;
+
+        System.out.println(x - my_project.Config.WINDOW_WIDTH / 2);
+        System.out.println(y - my_project.Config.WINDOW_HEIGHT / 2);
         // Erzeuge die erste Szene
         createScene();
         // Erzeuge ein neues Fenster zum Zeichnen
@@ -127,7 +130,14 @@ public class ViewController implements ActionListener, KeyListener, MouseListene
         // Übergibt den weiteren Programmfluss an das neue Objekt der Klasse ViewController
         if ( Config.INFO_MESSAGES) System.out.println("  > ViewController: Fenster eingerichtet. Startszene (Index: 0) angelegt.");
     }
-
+    public int getWindowX() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        return gd.getDisplayMode().getWidth() / 2 - my_project.Config.WINDOW_WIDTH / 2;
+    }
+    public int getWindowY() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        return gd.getDisplayMode().getHeight() / 2 - my_project.Config.WINDOW_HEIGHT / 2;
+    }
     /**
      * Zeigt die entsprechende Szene in der DrawFrame an. Außerdem ist nur noch die Interaktion mit Objekten dieser Szene möglich.
      * @param index Gibt die Nummer des gewünschten Drawing-Panel-Objekts an.
