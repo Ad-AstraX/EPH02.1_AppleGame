@@ -39,15 +39,24 @@ public class ProgramController {
         viewController.draw(player01);
         viewController.register(player01);
 
-        double xPos = Math.random()*(Config.WINDOW_WIDTH-50) + 50;
-        double yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
-        apple01 = new Apple(xPos, yPos, player01);
-        viewController.draw(apple01);
+        Apple[] apples = new Apple[4];
+        Pear[] pears = new Pear[4];
 
-        xPos = Math.random()*(Config.WINDOW_WIDTH-50) + 50;
-        yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
-        pear01 = new Pear(xPos, yPos, player01);
-        viewController.draw(pear01);
+        for (int i = 0; i < 4; i++) {
+            double xPos = Math.random()*(Config.WINDOW_WIDTH-50) + 50;
+            double yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
+            if (i == 3) {
+                apples[i] = new PowerApple(xPos, yPos, player01);
+            } else {
+                apples[i] = new Apple(xPos, yPos, player01);
+            }
+            viewController.draw(apples[i]);
+
+            xPos = Math.random()*(Config.WINDOW_WIDTH-50) + 50;
+            yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
+            pears[i] = new Pear(xPos, yPos, player01, Math.random()*10);
+            viewController.draw(pears[i]);
+        }
 
         Button button = new Button();
         viewController.register (button);

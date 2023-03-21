@@ -38,6 +38,14 @@ public class Player extends InteractiveGraphicalObject {
         drawTool.drawRectangle(x,y,width,height);
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     @Override
     public void update(double dt) {
         //TODO 05 Überarbeiten Sie die Update-Methode derart, dass ein Player-Objekt nicht den Bildschirm verlassen kann und immer zu sehen ist.
@@ -53,6 +61,18 @@ public class Player extends InteractiveGraphicalObject {
                 x = 0;
             }
         }
+    }
+
+    public void setKeyToGoLeft(int keyToGoLeft) {
+        this.keyToGoLeft = keyToGoLeft;
+    }
+
+    public void setKeyToGoRight(int keyToGoRight) {
+        this.keyToGoRight = keyToGoRight;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
     @Override

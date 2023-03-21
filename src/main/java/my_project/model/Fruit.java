@@ -4,11 +4,12 @@ import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
 import my_project.Config;
 
-public class Fruit extends GraphicalObject {
+public abstract class Fruit extends GraphicalObject {
 
     //Attribute
     private double speed;
-    private Player player;
+    protected Player player;
+    protected double timer;
 
     public Fruit(double x, double y, String image, Player player){
         super (image, x, y);
@@ -25,6 +26,7 @@ public class Fruit extends GraphicalObject {
 
     @Override
     public void update(double dt) {
+        timer += dt;
         this.y += this.speed*dt;
         if (this.y >= Config.WINDOW_HEIGHT || checkAndHandleCollision()) {
             jumpBack();
