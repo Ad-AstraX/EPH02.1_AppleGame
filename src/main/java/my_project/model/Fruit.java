@@ -30,6 +30,9 @@ public abstract class Fruit extends GraphicalObject {
         this.y += this.speed*dt;
         if (this.y >= Config.WINDOW_HEIGHT || checkAndHandleCollision()) {
             jumpBack();
+            if (this instanceof PowerApple) {
+                player.getBuff();
+            }
         }
     }
 

@@ -27,8 +27,4 @@ public class PowerApple extends Apple{
             pulse += 1;
         }
     }
-
-    public void giveBuff() {
-        //player.setSpeed(player.speed);
-    }
 }

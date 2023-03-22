@@ -12,9 +12,9 @@ public class Pear extends Fruit{
     public void update(double dt) {
         super.update(dt);
         if ((int)timer % 2 == 0) {
-            x += offset;
+            x += offset*dt;
         } else {
-            x -= offset;
+            x -= offset*dt;
         }
     }
 }

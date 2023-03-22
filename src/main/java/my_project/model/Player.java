@@ -7,9 +7,8 @@ import my_project.Config;
 import java.awt.event.KeyEvent;
 
 public class Player extends InteractiveGraphicalObject {
-
-
     //Attribute
+    private double timer;
     private double speed;
     private int points;
 
@@ -48,6 +47,9 @@ public class Player extends InteractiveGraphicalObject {
 
     @Override
     public void update(double dt) {
+        if (timer >= 0) {
+            timer -= dt;
+        }
         //TODO 05 Überarbeiten Sie die Update-Methode derart, dass ein Player-Objekt nicht den Bildschirm verlassen kann und immer zu sehen ist.
         if(direction == 0){
             x = x + speed*dt;
@@ -75,6 +77,26 @@ public class Player extends InteractiveGraphicalObject {
         this.direction = direction;
     }
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getKeyToGoLeft() {
+        return keyToGoLeft;
+    }
+
+    public int getKeyToGoRight() {
+        return keyToGoRight;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
     @Override
     public void keyPressed(int key) {
         if(key == keyToGoLeft){
@@ -93,5 +115,10 @@ public class Player extends InteractiveGraphicalObject {
         if(key == keyToGoRight){
             direction = -1;
         }
+    }
+
+    public void getBuff() {
+        timer = 3;
+        this.setSpeed(this.getSpeed()+50);
     }
 }
