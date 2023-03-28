@@ -36,11 +36,11 @@ public class ProgramController {
         Background background = new Background(0);
         viewController.draw(background);
 
-        player01 = new Player1(50, Config.WINDOW_HEIGHT-100, 255, 0, 0);
+        player01 = new Player1(50, Config.WINDOW_HEIGHT-200, 255, 0, 0);
         viewController.draw(player01);
         viewController.register(player01);
 
-        player02 = new Player2(Config.WINDOW_WIDTH-150, Config.WINDOW_HEIGHT-100, 100, 255, 0);
+        player02 = new Player2(Config.WINDOW_WIDTH-150, Config.WINDOW_HEIGHT-200, 100, 255, 0);
         viewController.draw(player02);
         viewController.register(player02);
 
@@ -66,6 +66,9 @@ public class ProgramController {
             }
             viewController.draw(pears[i]);
         }
+
+        Bomb bomb = new Bomb (50, -50, player01);
+        viewController.draw(bomb);
 
         Button button = new Button();
         viewController.register (button);

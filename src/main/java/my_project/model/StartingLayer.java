@@ -13,8 +13,6 @@ public class StartingLayer extends GraphicalObject{
 
     @Override
     public void draw(DrawTool drawTool) {
-        drawTool.drawImage(getMyImage(), 0, 0);
-        rescale(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
         if (scene == 0) {
             drawTool.setCurrentColor(new Color (0, 0, 0, 148));
             drawTool.drawFilledRectangle(0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);

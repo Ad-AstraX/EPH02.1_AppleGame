@@ -36,6 +36,8 @@ public class Background extends GraphicalObject {
         drawTool.formatText("Arial",1,25);
         drawTool.drawText(450,50,chosenPhrase);
          */
+        drawTool.drawImage(getMyImage(), 0, 0);
+        rescale(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
     }
 
     @Override

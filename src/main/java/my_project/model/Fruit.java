@@ -34,6 +34,7 @@ public abstract class Fruit extends GraphicalObject {
         timer += dt;
         this.y += this.speed*dt;
         if (this.y >= Config.WINDOW_HEIGHT || checkAndHandleCollision()) {
+
             rescalePercent(0.9+Math.random()*1.9, 50);
             if (this instanceof Pear) {
                 rescalePercent(0.9+Math.random()*1.9, 50);

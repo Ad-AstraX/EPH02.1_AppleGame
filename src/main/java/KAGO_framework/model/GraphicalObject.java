@@ -54,21 +54,6 @@ public class GraphicalObject implements Drawable {
     }
 
     /**
-     * Lädt ein Bild, das zur Repräsentation des Objekts benutzt werden kann.
-     * Passt automatisch die Attribute für Breite und Höhe der des Bildes an.
-     * @param pathToImage Der Pfad zu dem zu ladenden Bild
-     */
-    public BufferedImage createImage(String pathToImage){
-        BufferedImage tmpImage = null;
-        try {
-            tmpImage = ImageIO.read(new File(pathToImage));
-        } catch (IOException e) {
-            if ( Config.INFO_MESSAGES) System.out.println("Laden eines Bildes fehlgeschlagen: "+pathToImage+"\n Hast du den Pfad und Dateinamen richtig geschrieben?");
-        }
-        return tmpImage;
-    }
-
-    /**
      * Lädt ein neues Bild und setzt es als aktuelles Bild
      * @param pathToImage Der Pfad zu dem zu ladenden Bild
      */
@@ -118,6 +103,7 @@ public class GraphicalObject implements Drawable {
         this.height = getMyImage().getHeight();
         this.width =  getMyImage().getWidth();
     }
+
     protected void rescale(double rescaledWidth, double rescaledHeight) {
         try {
             this.setImage(this.getMyImage().getScaledInstance(
