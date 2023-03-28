@@ -1,7 +1,9 @@
 package my_project.model;
 
+import java.awt.*;
 import KAGO_framework.model.GraphicalObject;
 import KAGO_framework.view.DrawTool;
+import my_project.Config;
 
 /**
  * Die Background-Klasse stellt die Umsetzung eines Objekts für den Hintergrund des Apple-Games dar.
@@ -20,24 +22,24 @@ public class Background extends GraphicalObject {
             "\"Günde bir elma Doktoru uzak tutar.\" - Türkei",
             "\"Rojek sêvek doktor dûr dike\" - Kurdisch",
             "\"تفاحة على الريق تغنيك عن الطبيب\" - Arabisch"};
-
-
-    public Background(){
+    public Background(int scene){
         chosenPhrase = phrases[(int)(Math.random()*phrases.length)];
+        this.setNewImage("src/main/resources/graphic/Background.png");
     }
 
     @Override
     public void draw(DrawTool drawTool) {
+        /*
         drawTool.setCurrentColor(25,100,0,255);
         drawTool.drawFilledRectangle(0,0,1600,1024);
         drawTool.setCurrentColor(0,0,0,255);
         drawTool.formatText("Arial",1,25);
         drawTool.drawText(450,50,chosenPhrase);
+         */
     }
 
     @Override
     public void update(double dt) {
-
     }
 
 }

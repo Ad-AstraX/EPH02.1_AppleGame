@@ -5,6 +5,7 @@ import KAGO_framework.view.DrawTool;
 import KAGO_framework.control.Drawable;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -90,7 +91,46 @@ public class GraphicalObject implements Drawable {
         width = this.myImage.getWidth();
         height = this.myImage.getHeight();
     }
+    public void setImage(Image img) {
+        BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        bi.getGraphics().drawImage(img,0,0,bi.getWidth(),bi.getHeight(),null);
+        this.setImage(bi);
+    }
 
+    protected void rescalePercent(double rescalingPercentage, double ifZero) {
+        double rescaledHeight = getMyImage().getHeight()*rescalingPercentage;
+        double rescaledWidth = rescalingPercentage*getMyImage().getWidth();
+
+        if (rescaledWidth <= 1 || rescaledHeight <= 1){
+            rescaledWidth = getMyImage().getWidth()*1.5;
+            rescaledHeight = getMyImage().getWidth()*1.5;
+        }
+        if (rescaledWidth >= 100 || rescaledHeight >= 100) {
+            rescaledWidth = getMyImage().getWidth()*0.5;
+            rescaledHeight = getMyImage().getHeight()*0.5;
+        }
+
+        this.setImage(this.getMyImage().getScaledInstance(
+                (int) rescaledHeight,
+                (int) rescaledWidth,
+                getMyImage().SCALE_DEFAULT)
+        );
+        this.height = getMyImage().getHeight();
+        this.width =  getMyImage().getWidth();
+    }
+    protected void rescale(double rescaledWidth, double rescaledHeight) {
+        try {
+            this.setImage(this.getMyImage().getScaledInstance(
+                    (int) rescaledHeight,
+                    (int) rescaledWidth,
+                    getMyImage().SCALE_DEFAULT)
+            );
+            this.height = getMyImage().getHeight();
+            this.width = getMyImage().getWidth();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Picture could not be rescaled");
+        }
+    }
     @Override
     /**
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Nur hier kann die grafische Repräsentation des Objekts realisiert

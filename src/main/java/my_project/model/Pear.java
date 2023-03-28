@@ -1,7 +1,7 @@
 package my_project.model;
 
 public class Pear extends Fruit{
-    private double offset;
+    protected double offset;
     public Pear(double x, double y, Player player, double offset){
         super (x, y, "src/main/resources/graphic/pear.png", player);
 

@@ -14,10 +14,8 @@ public class ProgramController {
 
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-
-    private Apple apple01;
-    private Pear pear01;
     private Player player01;
+    private Player player02;
 
     /**
      * Konstruktor
@@ -35,9 +33,16 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        player01 = new Player(50, Config.WINDOW_HEIGHT-100);
+        Background background = new Background(0);
+        viewController.draw(background);
+
+        player01 = new Player1(50, Config.WINDOW_HEIGHT-100, 255, 0, 0);
         viewController.draw(player01);
         viewController.register(player01);
+
+        player02 = new Player2(Config.WINDOW_WIDTH-150, Config.WINDOW_HEIGHT-100, 100, 255, 0);
+        viewController.draw(player02);
+        viewController.register(player02);
 
         Apple[] apples = new Apple[4];
         Pear[] pears = new Pear[4];
@@ -54,7 +59,11 @@ public class ProgramController {
 
             xPos = Math.random()*(Config.WINDOW_WIDTH-50) + 50;
             yPos = Math.random()*(Config.WINDOW_HEIGHT-50) + 50;
-            pears[i] = new Pear(xPos, yPos, player01, 20+Math.random()*30);
+            if (i == 3) {
+                pears[i] = new PowerPear(xPos, yPos, player01);
+            } else {
+                pears[i] = new Pear(xPos, yPos, player01, 20+Math.random()*30);
+            }
             viewController.draw(pears[i]);
         }
 
