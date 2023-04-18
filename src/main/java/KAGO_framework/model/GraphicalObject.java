@@ -107,8 +107,8 @@ public class GraphicalObject implements Drawable {
     protected void rescale(double rescaledWidth, double rescaledHeight) {
         try {
             this.setImage(this.getMyImage().getScaledInstance(
-                    (int) rescaledHeight,
                     (int) rescaledWidth,
+                    (int) rescaledHeight,
                     getMyImage().SCALE_DEFAULT)
             );
             this.height = getMyImage().getHeight();
@@ -117,6 +117,7 @@ public class GraphicalObject implements Drawable {
             System.out.println("Picture could not be rescaled");
         }
     }
+
     @Override
     /**
      * Wird vom Hintergrundprozess für jeden Frame aufgerufen. Nur hier kann die grafische Repräsentation des Objekts realisiert

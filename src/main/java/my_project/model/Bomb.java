@@ -9,8 +9,8 @@ import java.awt.*;
 public class Bomb extends Fruit {
     private double pulse;
     private double explosionTimer;
-    public Bomb (double x, double y, Player player) {
-        super (x, y, "src/main/resources/graphic/bomb.png", player);
+    public Bomb (double x, double y, Player[] players) {
+        super (x, y, "src/main/resources/graphic/bomb.png", players);
 
         explosionTimer = 2+Math.random ()*5;
     }

@@ -10,18 +10,17 @@ public abstract class Fruit extends GraphicalObject {
 
     //Attribute
     private double speed;
-    protected Player player;
+    protected Player[] players;
     protected double timer;
-    protected double rescaledHeight;
-    protected double rescalingPercentage;
-    protected double rescaledWidth;
+    protected String imagePath;
 
-    public Fruit(double x, double y, String image, Player player){
+    public Fruit(double x, double y, String image, Player[] players){
         super (image, x, y);
         speed = 150;
         this.height = getMyImage().getHeight();
         this.width =  getMyImage().getWidth();
-        this.player = player;
+        this.players = players;
+        this.imagePath = image;
     }
 
     @Override
@@ -34,15 +33,12 @@ public abstract class Fruit extends GraphicalObject {
         timer += dt;
         this.y += this.speed*dt;
         if (this.y >= Config.WINDOW_HEIGHT || checkAndHandleCollision()) {
-
+            this.setNewImage(imagePath);
             rescalePercent(0.9+Math.random()*1.9, 50);
-            if (this instanceof Pear) {
-                rescalePercent(0.9+Math.random()*1.9, 50);
-            }
+            rescalePercent(0.9+Math.random()*1.9, 50);
+            this.height = getMyImage().getHeight();
+            this.width =  getMyImage().getWidth();
             jumpBack();
-            if (this instanceof PowerApple) {
-                player.getBuff();
-            }
         }
     }
 
@@ -52,46 +48,14 @@ public abstract class Fruit extends GraphicalObject {
     }
 
     private boolean checkAndHandleCollision() {
-        return this.collidesWith(player);
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public double getTimer() {
-        return timer;
-    }
-
-    public void setTimer(double timer) {
-        this.timer = timer;
-    }
-
-    public double getRescaledHeight() {
-        return rescaledHeight;
-    }
-
-    public void setRescaledHeight(double rescaledHeight) {
-        this.rescaledHeight = rescaledHeight;
-    }
-
-    public double getRescaledWidth() {
-        return rescaledWidth;
-    }
-
-    public void setRescaledWidth(double rescaledWidth) {
-        this.rescaledWidth = rescaledWidth;
+        for (Player player : players) {
+            if (this.collidesWith(player)) {
+                if (this instanceof PowerApple) {
+                    player.getBuff();
+                }
+                return true;
+            }
+        }
+        return false;
     }
 }

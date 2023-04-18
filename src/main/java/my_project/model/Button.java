@@ -5,28 +5,63 @@ import KAGO_framework.model.InteractiveGraphicalObject;
 import KAGO_framework.view.DrawTool;
 
 import my_project.Config;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-public class Button extends InteractiveGraphicalObject {
-    boolean show;
-    String currentPic;
-    public Button () {
-        this.setNewImage("src/main/resources/graphic/buttonScoreSystem.png");
-        currentPic = "src/main/resources/graphic/buttonScoreSystem.png";
-        x = 10;
-        y = 10;
+public abstract class Button extends InteractiveGraphicalObject {
+    // Attribute
+    protected double multiplyBy;
+
+    // Referenzen
+    protected String originalPic;
+    protected String hoveredOnPic;
+    public Button (double x, double y, double multiplyBy, String originalPic, String hoveredOnPic) {
+        this.x = x;
+        this.y = y;
+        this.multiplyBy = multiplyBy;
+
+        this.setNewImage(originalPic);
+        this.originalPic = originalPic;
+        this.hoveredOnPic = hoveredOnPic;
+
+        this.rescale(
+                getMyImage().getWidth()*multiplyBy,
+                getMyImage().getHeight()*multiplyBy
+        );
+        this.height = getMyImage().getHeight();
+        this.width = getMyImage().getWidth();
     }
 
     public void draw(DrawTool drawTool) {
-        if (show) {
-            drawTool.drawImage(getMyImage(), x, y);
-        }
-        //System.out.println(getMyImage());
+        drawTool.drawImage(getMyImage(), x, y);
+    }
+
+    public void update(double dt) {
     }
     @Override
+    public void mouseMoved(MouseEvent e){
+        if (mouseOnPic(e)) {
+            this.setNewImage(hoveredOnPic);
+        } else {
+            this.setNewImage(originalPic);
+        }
+        this.rescale(
+                getMyImage().getWidth()*multiplyBy,
+                getMyImage().getHeight()*multiplyBy
+        );
+        this.height = getMyImage().getHeight();
+        this.width = getMyImage().getWidth();
+    }
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == 1) {
+        /*
+        if (mouseOnPic(e)) {
+            this.setNewImage(hoveredOnPic);
+            if (e.getButton() == 1) {
+
             if (show) {
                 if (mouseOnPic(getMyImage(), this, e)){
                     if (currentPic == "src/main/resources/graphic/buttonScoreSystem.png") {
@@ -42,26 +77,24 @@ public class Button extends InteractiveGraphicalObject {
             } else {
                 show = true;
             }
-        }
+            }
+        } else {
+            this.setNewImage(originalPic);
+        }*/
     }
-    public boolean mouseOnPic(BufferedImage bI, GraphicalObject gO, MouseEvent e) {
-        //double mouseX = e.getLocationOnScreen().getX() - 468;
-        //double mouseY = e.getLocationOnScreen().getY() - 120;
+    public boolean mouseOnPic(MouseEvent e) {
+        double mouseX = e.getLocationOnScreen().getX() - Config.WINDOW_X;
+        double mouseY = e.getLocationOnScreen().getY() - Config.WINDOW_Y - 30;
 
-        double mouseX = e.getLocationOnScreen().getX() - 460;
-        double mouseY = e.getLocationOnScreen().getY() - 56;
-        System.out.println(mouseX);
-        System.out.println(mouseY);
-
-        if (mouseX >= gO.getX() && mouseX <= (int)(gO.getX() + bI.getWidth())
-                && mouseY >= gO.getY() && mouseY < (int)(gO.getY() + bI.getHeight())) {
+        if (mouseX >= this.getX() && mouseX <= (int)(this.getX() + getMyImage().getWidth())
+                && mouseY >= this.getY() && mouseY <= (int)(this.getY() + getMyImage().getHeight())) {
             try {
-                int pixel = bI.getRGB((int)mouseX, (int)mouseY);
-                System.out.println(pixel);
+                /*
+                System.out.println (getMyImage().getRGB((int)mouseX, (int)mouseY));
+                int pixel = getMyImage().getRGB((int)mouseX, (int)mouseY);
                 int alpha = (pixel >> 24) & 0xff;
-
-                if (alpha != 0) {System.out.println(alpha); return true; }
-                return false;
+                if (alpha == 0) {System.out.println(alpha); return false; }*/
+                return true;
             }
             catch (ArrayIndexOutOfBoundsException exception) {return false;}
         }

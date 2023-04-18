@@ -22,7 +22,7 @@ public class Background extends GraphicalObject {
             "\"Günde bir elma Doktoru uzak tutar.\" - Türkei",
             "\"Rojek sêvek doktor dûr dike\" - Kurdisch",
             "\"تفاحة على الريق تغنيك عن الطبيب\" - Arabisch"};
-    public Background(int scene){
+    public Background(){
         chosenPhrase = phrases[(int)(Math.random()*phrases.length)];
         this.setNewImage("src/main/resources/graphic/Background.png");
     }
@@ -36,8 +36,8 @@ public class Background extends GraphicalObject {
         drawTool.formatText("Arial",1,25);
         drawTool.drawText(450,50,chosenPhrase);
          */
-        drawTool.drawImage(getMyImage(), 0, 0);
         rescale(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
+        drawTool.drawImage(getMyImage(), 0, 0);
     }
 
     @Override

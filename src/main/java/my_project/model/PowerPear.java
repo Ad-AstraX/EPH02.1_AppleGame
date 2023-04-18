@@ -6,12 +6,12 @@ public class PowerPear extends Pear{
     private double pulse;
     private double speedBuff;
 
-    public PowerPear(double x, double y, Player player){
-        super (x, y, player, 0);
+    public PowerPear(double x, double y, Player[] players){
+        super (x, y, players, 0);
     }
 
     public void draw (DrawTool drawTool) {
-        drawTool.setCurrentColor (new Color(255, 233, 107, 108));
+        drawTool.setCurrentColor (new Color(100, 231, 59, 115));
 
         drawTool.drawFilledCircle (x+width/2, y+height/2, (Math.max(height, width))-15);
         super.draw(drawTool);

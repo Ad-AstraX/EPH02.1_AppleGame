@@ -7,8 +7,8 @@ public class PowerApple extends Apple{
     private double pulse;
     private double speedBuff;
 
-    public PowerApple(double x, double y, Player player){
-        super (x, y, player);
+    public PowerApple(double x, double y, Player[] players){
+        super (x, y, players);
     }
 
     public void draw (DrawTool drawTool) {
